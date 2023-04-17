@@ -4,9 +4,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int main(int argc, char* argv){
+int main(int argc, char* argv[]){
     int sum = 0;
-    for(int i = 1 ; i < argc+1 ; i++){
-        sum += atoi(argv[i])
+    for(int i = 1 ; i < argc ; i++){
+        sum += atoi(argv[i]);
     }
+	printf("%d\n", sum);
 }
