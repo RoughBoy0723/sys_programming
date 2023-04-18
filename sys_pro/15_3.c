@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
     if(fork() == 0){
         close(1);
         open(argv[1], O_WRONLY);
-        printf("[%d], [%d], [%d]",getpid(), getuid(), getgid());
+        printf("[%d], [%d], [%d]",getppid(), getuid(), getgid());
     }else{
         printf("[%d], [%d], [%d]",getpid(), geteuid(), getegid());
     }

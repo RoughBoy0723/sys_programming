@@ -5,10 +5,11 @@
 #include <sys/types.h>
 #include <fcntl.h>
 
-int mySumAscii(char buf[]){
+int mySumAscii(char *buf){
     int sum = 0;
-    while(scanf("%c",buf)>0){
-        sum += int(buf);
+    while(*buf != '\0'){
+        sum += (int)(*buf);
+				buf++;
     }
     return sum;
 }

@@ -9,10 +9,10 @@ int main(int argc, char *argv[]){
     int fd1;
     char buf;
     close(0);
-    open(fd1, O_RDONLY);
+    open(argv[1], O_RDONLY);
 
     while(scanf("%c",&buf)>0){
-        printf("%c",&buf);
+        printf("%s",&buf);
     }
     close(fd1);
 }

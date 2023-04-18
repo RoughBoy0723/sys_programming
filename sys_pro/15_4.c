@@ -7,18 +7,18 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]){
-    int fd1;
-    char buf;
+    int fd1, fd2, size;
+    char buf[1024];
+    memset(buf, 0x00, sizeof(buf));
 
-    if(fd1 = open(argv[1], O_RDONLY)<0){
-        stderr("error\n");
-        exit(0);
-    }
-    close(1)
-    open(argv[2], O_WRONLY|O_CREAT|O_TRUNC,0666);
+    fd1 = open(argv[1], O_RDONLY);
+		close(0);
+		dup(fd1);
 
-    while(read(fd1,buf,1)>0){
-        write(1,buf,1);
-    }
-    close(fd1);
+    fd2 = open(argv[2], O_WRONLY|O_CREAT|O_TRUNC,0666);
+    close(1);
+		dup(fd2);
+
+    size = read(0,buf,sizeof(buf));
+    write(1, buf, size);
 }
