@@ -9,7 +9,7 @@
 #define LBUF 1024
 
 int main(int argc, char *argv[]){
-		char* path[4] = {"./","./bin/","./usr/bin/","./usr/local/bin/"};
+		char* path[4] = {"","/bin/","/usr/bin/","/usr/local/bin/"};
 		while(1){
 				int cnt = 0; 
 				int i = 0;
@@ -34,22 +34,39 @@ int main(int argc, char *argv[]){
 				
 				char test_str[30];
 				memset(test_str,0, sizeof(test_str));
-				int n;
-
+				int t = 0;
+				
 				for(int i = 0; i < 4 ; i++){
 						strcpy(test_str, path[i]);
 						strncat(test_str, str_arr[0],sizeof(str_arr[0]));
-						strncpy(test_str,test_str,strlen(test_str));
-						printf("%s",test_str);
-						n = access(test_str,F_OK);
-						printf("%d\n",n);
-						if(n == 0){
-								printf("TRUE\n");
-								//break;
-						}else{
-								printf("FALSE\n");
-								//break;
+						strtok(test_str,"\n");
+						if(access(test_str,F_OK)== 0){
+								t =1;
+
+								char *str_fin[20];
+
+								printf("%s ",test_str);
+								for(int l = 0 ; l < cnt ; l++){
+										printf("%s ",str_arr[l]);
+								}
+
+								memset(str_fin[0], 0, 20);
+								strncpy(str_fin[0], test_str,strlen(test_str));
+								
+								for(int n = 1; n < cnt ; n++){
+										memset(str_fin[n],0,20);
+										strcpy(str_fin[n],str_arr[n]);
+								}
+								
+								if(fork() == 0 ){
+										execv(str_fin[0], str_fin);
+								}else{
+										wait((int*)0);
+								}
 						}
+				}
+				if(t == 0){
+						printf("Command Not Found\n");
 				}
 		}
 }
