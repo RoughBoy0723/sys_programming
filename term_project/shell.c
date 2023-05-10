@@ -70,3 +70,7 @@ int main(int argc, char *argv[]){
 				}
 		}
 }
+
+void new_arr(char fir, char* arr[]){
+		
+}
