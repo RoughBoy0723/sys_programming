@@ -8,61 +8,67 @@
 
 #define LBUF 1024
 
+int new_arr(char* fir, char* arr[], int len);
+
 int main(int argc, char *argv[]){
 		char* path[4] = {"","/bin/","/usr/bin/","/usr/local/bin/"};
+		char str_read[LBUF] = {0,};
+		char *str_adr = str_read;
+		char str_opt[20]={0,};
 		while(1){
-				int cnt = 0; 
 				int i = 0;
-				char str_read[LBUF];
+				int j = 0;
+
 				memset(str_read,0, LBUF* sizeof(char));
-				char* str_arr[20];
-				memset(str_arr,0,20 * sizeof(char));
-				fgets(str_read,LBUF,stdin);				
+				memset(str_opt,0,20 * sizeof(char));
+
+				fgets(str_read,LBUF,stdin);
+
 				if(strlen(str_read) == 0){
 						continue;
 				}
-				char* arr = strtok(str_read," ");
 				
+				char str_path[20];
+				memset(str_path, 0, 20*sizeof(char));
 
-				while(arr != NULL){
-						
-						str_arr[cnt] = arr;
-						
-						arr = strtok(NULL," ");
-						cnt++;
+				while(*(str_adr+i) != ' '){
+						str_path[j] = *(str_adr+i);
+						i++;
+						j++;
+				}
+
+				j=0;
+				i++;
+				
+				while(*(str_adr+i) != '\n'){
+						str_opt[j] = *(str_adr+i);
+						j++;
+						i++;
 				}
 				
 				char test_str[30];
 				memset(test_str,0, sizeof(test_str));
 				int t = 0;
-				
+
 				for(int i = 0; i < 4 ; i++){
+						if(!strcmp(path[i],"cd")){
+								chdir(str_opt);
+								break;
+						}
 						strcpy(test_str, path[i]);
-						strncat(test_str, str_arr[0],sizeof(str_arr[0]));
+						strcat(test_str, str_path);
 						strtok(test_str,"\n");
 						if(access(test_str,F_OK)== 0){
 								t =1;
-
-								char *str_fin[20];
-
-								printf("%s ",test_str);
-								for(int l = 0 ; l < cnt ; l++){
-										printf("%s ",str_arr[l]);
-								}
-
-								memset(str_fin[0], 0, 20);
-								strncpy(str_fin[0], test_str,strlen(test_str));
-								
-								for(int n = 1; n < cnt ; n++){
-										memset(str_fin[n],0,20);
-										strcpy(str_fin[n],str_arr[n]);
-								}
-								
 								if(fork() == 0 ){
-										execv(str_fin[0], str_fin);
+										if(str_opt[0] == '\0'){
+												execl(test_str,test_str,(char*) 0);
+										}else{
+												execl(test_str,test_str, str_opt,(char *)0);
+										}
 								}else{
 										wait((int*)0);
-								}
+								}						
 						}
 				}
 				if(t == 0){
@@ -71,6 +77,3 @@ int main(int argc, char *argv[]){
 		}
 }
 
-void new_arr(char fir, char* arr[]){
-		
-}

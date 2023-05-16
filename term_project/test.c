@@ -41,20 +41,7 @@ int main(int argc, char *argv[]){
 						strncat(test_str, str_arr[0],sizeof(str_arr[0]));
 						strtok(test_str,"\n");
 						if(access(test_str,F_OK) == 0){
-								t = 1;
-								printf("0");
-								char *str_fin[20];
-								printf("1");
-								strcpy(str_fin[0], test_str);
-								printf("2");
-								for(int n = 1 ; n < cnt;n++){
-										strcpy(str_fin[n], str_arr[n]);
-								}
-								printf("3");
-								for(int m = 0; m <cnt;m++){
-										printf("%s ",str_fin[m]);
-								}
-								printf("4");
+
 								if(fork() == 0 ){
 										execv(str_fin[0], str_fin);
 								}else{
@@ -67,3 +54,5 @@ int main(int argc, char *argv[]){
 				}
         }
 }
+
+char new_arr()
