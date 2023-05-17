@@ -17,10 +17,12 @@ int main(int argc, char *argv[]){
 				memset(str_read,0, LBUF* sizeof(char));
 				char* str_arr[20];
 				memset(str_arr,0,20 * sizeof(char));
-				fgets(str_read,LBUF,stdin);				
+				fgets(str_read,LBUF,stdin);
+
 				if(strlen(str_read) == 0){
 						continue;
 				}
+
 				char* arr = strtok(str_read," ");
 				
 
@@ -32,18 +34,20 @@ int main(int argc, char *argv[]){
 						cnt++;
 				}
 
+				strtok(str_arr[cnt-1],"\n");
 
 				char test_str[30];
                 memset(test_str,0, sizeof(test_str));
-                int t;
+                int t = 0;
+
                 for(int i = 0; i < 4 ; i++){
 						strcpy(test_str, path[i]);
 						strncat(test_str, str_arr[0],sizeof(str_arr[0]));
 						strtok(test_str,"\n");
 						if(access(test_str,F_OK) == 0){
-
+								t = 1;
 								if(fork() == 0 ){
-										execv(str_fin[0], str_fin);
+										execv(test_str, &str_arr[0]);
 								}else{
 										wait((int*)0);
 								}
@@ -54,5 +58,3 @@ int main(int argc, char *argv[]){
 				}
         }
 }
-
-char new_arr()
