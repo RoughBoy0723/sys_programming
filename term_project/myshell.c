@@ -43,6 +43,7 @@ int main(int argc, char *argv[]){
 				memset(str_read,0, LBUF* sizeof(char));
 				char* str_arr[20];
 				memset(str_arr,0,20 * sizeof(char));
+				fputs("oh@");
 				fgets(str_read,LBUF,stdin);
 
 				log_write(str_read, fd, timer);
