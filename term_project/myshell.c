@@ -23,6 +23,7 @@ void log_write(char* str_read,int fd, time_t timer){
 
 void sigint_handler(int sig){
 }
+
 int main(int argc, char *argv[]){
 		time_t timer = time(NULL);
 		char* path[4] = {"","/bin/","/usr/bin/","/usr/local/bin/"};
@@ -43,6 +44,7 @@ int main(int argc, char *argv[]){
 				memset(str_read,0, LBUF* sizeof(char));
 				char* str_arr[20];
 				memset(str_arr,0,20 * sizeof(char));
+			
 				fputs("oh@");
 				fgets(str_read,LBUF,stdin);
 
