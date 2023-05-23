@@ -5,78 +5,88 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <string.h>
+#include <fcntl.h>
+#include <time.h>
+#include <string.h>
+#include <signal.h>
 
 #define LBUF 1024
 
-int new_arr(char* fir, char* arr[], int len);
+void log_write(char* str_read,int fd, time_t timer){
+		char buf[LBUF];
+		strcpy(buf,ctime(&timer));
+		strtok(buf,"\n");
+		strcat(buf," : ");
+		strcat(buf,str_read);
+		write(fd, buf, strlen(buf));
+}
 
+void sigint_handler(int sig){
+}
 int main(int argc, char *argv[]){
+		time_t timer = time(NULL);
 		char* path[4] = {"","/bin/","/usr/bin/","/usr/local/bin/"};
-		char str_read[LBUF] = {0};
-		char *str_adr = str_read;
-		char str_opt[20] = {0};
+		int fd = open(".cmd_log",O_WRONLY|O_CREAT|O_APPEND,0666);
+		
+		char buf[LBUF];
+		strcpy(buf,ctime(&timer));
+		strtok(buf,"\n");
+		strcat(buf," : ");
+		strcat(buf, "shell - start\n");
+		write(fd, buf, strlen(buf));
+
 		while(1){
+				signal(SIGINT, sigint_handler);
+				int cnt = 0; 
 				int i = 0;
-				int j = 0;
+				char str_read[LBUF];
+				memset(str_read,0, LBUF* sizeof(char));
+				char* str_arr[20];
+				memset(str_arr,0,20 * sizeof(char));
+				fgets(str_read,LBUF,stdin);
 
-				memset(str_read, 0, LBUF * sizeof(char));
-				memset(str_opt, 0, 20 * sizeof(char));
-
-				fgets(str_read, LBUF, stdin);
+				log_write(str_read, fd, timer);
 
 				if(strlen(str_read) == 0){
 						continue;
 				}
 
-				char str_path[20] = {0};
-				memset(str_path, 0, 20 * sizeof(char));
+				char* arr = strtok(str_read," ");
+				
 
-				while (*(str_adr + i) != ' ' && *(str_adr + i) != '\n'){
-						str_path[j] = *(str_adr + i);
-						i++;
-						j++;
+				while(arr != NULL){
+						
+						str_arr[cnt] = arr;
+						
+						arr = strtok(NULL," ");
+						cnt++;
 				}
 
-				j = 0;
-				i++;
+				strtok(str_arr[cnt-1],"\n");
 
-				while (*(str_adr + i) != '\n'){
-						str_opt[j] = *(str_adr + i);
-						j++;
-						i++;
-				}
+				char test_str[30];
+                memset(test_str,0, sizeof(test_str));
+                int t = 0;
 
-				if (str_path[0] == '\0') {
-						printf("Invalid command\n");
-						continue;
-				}
-
-				char test_str[30] = {0};
-				int t = 0;
-
-				for (int i = 0; i < 4; i++) {
-						if (!strcmp(path[i], "cd")) {
-								chdir(str_opt);
-								break;
+                for(int i = 0; i < 4 ; i++){
+						if(!strcmp(str_arr[0],"cd")){
+								t=1;
+								chdir(str_arr[1]);
 						}
 						strcpy(test_str, path[i]);
-						strcat(test_str, str_path);
-						strtok(test_str, "\n");
-						if (access(test_str, F_OK) == 0) {
+						strncat(test_str, str_arr[0],sizeof(str_arr[0]));
+						strtok(test_str,"\n");
+						if(access(test_str,F_OK) == 0){
 								t = 1;
-								if (fork() == 0) {
-										if (str_opt[0] == '\0') {
-												execl(test_str, test_str, (char*) 0);
-										} else {
-												execl(test_str, test_str, str_opt, (char*) 0);
-										}
-								} else {
+								if(fork() == 0 ){
+										execv(test_str, &str_arr[0]);
+								}else{
 										wait((int*)0);
 								}
 						}
 				}
-				if (t == 0) {
-						printf("Command Not Found\n");
+				if(t == 0){
+						printf("Command not found\n");
+				}
         }
-    }
 }

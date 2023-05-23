@@ -1,0 +1,11 @@
+Tue May 23 15:25:36 2023 : shell - start
+Tue May 23 15:25:36 2023 : ls
+Tue May 23 15:25:36 2023 : ps
+Tue May 23 15:25:36 2023 : ls -l
+Tue May 23 15:25:36 2023 : ps -lf
+Tue May 23 15:27:53 2023 : shell - start
+Tue May 23 15:27:53 2023 : ls
+Tue May 23 15:27:53 2023 : ps
+Tue May 23 15:27:53 2023 : mkdir test
+Tue May 23 15:27:53 2023 : ls
+Tue May 23 15:27:53 2023 : ls -lf
