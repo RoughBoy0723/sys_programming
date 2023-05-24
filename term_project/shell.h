@@ -12,5 +12,8 @@
 
 #define LBUF 1024
 
-void log_write(char* str_read, int fd, time_t timer);
+char* path[4] = {"","/bin/","/usr/bin/","/usr/local/bin/"};
+
+char* set_path(char *str);
+void log_write(char *str_read, int fd, time_t timer);
 void sigint_handler(int sig);

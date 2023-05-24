@@ -18,3 +18,47 @@ Tue May 23 15:51:06 2023 : ls
 Tue May 23 15:51:06 2023 : ps
 Tue May 23 15:53:43 2023 : shell - start
 Tue May 23 15:53:43 2023 : ls
+Wed May 24 16:18:19 2023 : shell - start
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : ps
+Wed May 24 16:18:19 2023 : sl
+Wed May 24 16:18:19 2023 : cd test
+Wed May 24 16:18:19 2023 : pwd
+Wed May 24 16:18:19 2023 : cd ..
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : pwd
+Wed May 24 16:18:19 2023 : cd home
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd sys_pro
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : pwd
+Wed May 24 16:18:19 2023 : cd ..
+Wed May 24 16:18:19 2023 : pwd
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd files
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd home
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd dream_sys
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd hack
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : cd ..
+Wed May 24 16:18:19 2023 : ls
+Wed May 24 16:18:19 2023 : pwd
+Wed May 24 16:18:19 2023 : cd files
+Wed May 24 16:21:04 2023 : shell - start
+Wed May 24 16:21:04 2023 : ls -l
+Wed May 24 16:21:04 2023 : ls -rf
+Wed May 24 16:21:04 2023 : ps -l -m
+Wed May 24 16:21:04 2023 : ps -L -m
+Wed May 24 16:21:04 2023 : kill -9 30280
+Wed May 24 16:21:04 2023 : ps -L -m
+Wed May 24 16:21:04 2023 : cat cmd_log
+Wed May 24 16:21:04 2023 : cat .cmd_log
+Wed May 24 16:21:04 2023 : ls -l
+Wed May 24 16:21:04 2023 : ls
+Wed May 24 16:21:04 2023 : ls -r
+Wed May 24 16:21:04 2023 : ls -l
+Wed May 24 16:21:04 2023 : pwd
+Wed May 24 16:21:04 2023 : ls -lf

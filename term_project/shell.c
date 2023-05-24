@@ -1,32 +1,4 @@
-#include <shell.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <string.h>
-#include <fcntl.h>
-#include <time.h>
-#include <string.h>
-#include <signal.h>
-
-#define LBUF 1024
-
-void log_write(char* str_read, int fd, time_t timer);
-void sigint_handler(int sig);
-
-void log_write(char* str_read,int fd, time_t timer){
-		char buf[LBUF];
-		strcpy(buf,ctime(&timer));
-		strtok(buf,"\n");
-		strcat(buf," : ");
-		strcat(buf,str_read);
-		write(fd, buf, strlen(buf));
-}
-
-void sigint_handler(int sig){
-}
+#include "shell.h"
 
 int main(int argc, char *argv[]){
 		time_t timer = time(NULL);
@@ -96,4 +68,16 @@ int main(int argc, char *argv[]){
 						printf("Command not found\n");
 				}
         }
+}
+
+void log_write(char* str_read,int fd, time_t timer){
+        char buf[LBUF];
+        strcpy(buf,ctime(&timer));
+        strtok(buf,"\n");
+        strcat(buf," : ");
+        strcat(buf,str_read);
+        write(fd, buf, strlen(buf));
+}
+
+void sigint_handler(int sig){
 }
