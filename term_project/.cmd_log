@@ -9,3 +9,12 @@ Tue May 23 15:27:53 2023 : ps
 Tue May 23 15:27:53 2023 : mkdir test
 Tue May 23 15:27:53 2023 : ls
 Tue May 23 15:27:53 2023 : ls -lf
+Tue May 23 15:34:39 2023 : shell - start
+Tue May 23 15:34:39 2023 : ls -l
+Tue May 23 15:34:39 2023 : ps -rf
+Tue May 23 15:34:39 2023 : cat myshell.c
+Tue May 23 15:51:06 2023 : shell - start
+Tue May 23 15:51:06 2023 : ls
+Tue May 23 15:51:06 2023 : ps
+Tue May 23 15:53:43 2023 : shell - start
+Tue May 23 15:53:43 2023 : ls

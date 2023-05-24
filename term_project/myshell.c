@@ -1,3 +1,4 @@
+#include <shell.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,6 +12,9 @@
 #include <signal.h>
 
 #define LBUF 1024
+
+void log_write(char* str_read, int fd, time_t timer);
+void sigint_handler(int sig);
 
 void log_write(char* str_read,int fd, time_t timer){
 		char buf[LBUF];
@@ -45,7 +49,7 @@ int main(int argc, char *argv[]){
 				char* str_arr[20];
 				memset(str_arr,0,20 * sizeof(char));
 			
-				fputs("oh@");
+				fputs("oh@",stdout);
 				fgets(str_read,LBUF,stdin);
 
 				log_write(str_read, fd, timer);
