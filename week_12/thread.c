@@ -5,7 +5,8 @@
 
 void * threadFunc(void *arg){
 		char *s = (char* ) arg;
-		printf("%s\n",s);
+		printf("%s",s);
+		getchar();
 		return((void *) strlen(s));
 }
 
