@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <stlib.h>
+#include <stdlib.h>
 #include <signal.h>
+#include <unistd.h>
 
 void func(){
     printf("timeout\n");
@@ -9,6 +10,7 @@ void func(){
 
 int main(int argc, char *argv[]){
     signal(SIGALRM,func);
-    int cnt = atoi(argv[1]);
-    alarm(cnt);
+    alarm(atoi(argv[1]));
+	while(1)
+			;
 }

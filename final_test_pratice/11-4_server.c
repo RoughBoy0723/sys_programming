@@ -1,24 +1,20 @@
-#include <stdio.h>
-#include <stlib.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <string.h>
-
-#define SERVER "server"
-#define LINESIZE 512
-#define NUMTRIES 3
+#include "pipe.h"
 
 int main(int argc, char  *argv[]){
-    int fdpub;
-    char line[256];
+		int fdpub;
+		char line[LINESIZE];
 
-    fdpub = open(SERVER,O_RDONLY)
+		if((fdpub = open(SERVER,O_RDONLY)) == -1){
+				perror(SERVER);
+				exit(0);
+		}	
 
-    while(read(fdpub, line, 256)>0){
-        if(fork()==0)
-            execl(line, line, (char*)0);
-    }
-    close(fdpub);
+		while(1){
+				if(read(fdpub, line, LINESIZE)>0){
+						if(fork()==0){
+						execl(line, line, (char*)0);
+						}
+				}
+		}
+		close(fdpub);
 }

@@ -11,6 +11,6 @@ struct message{
 		char filename[100];
 };
 
-#define PUBLIC "Public"
+#define SERVER "server"
 #define LINESIZE 512
 #define NUMTRIES 3

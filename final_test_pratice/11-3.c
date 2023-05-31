@@ -1,6 +1,12 @@
 #include <stdio.h>
-#include <stlib.h>
+#include <stdlib.h>
 #include <signal.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <string.h>
+#include <sys/wait.h>
 
 int main(int argc, char *argv[]){
     int fd[2];

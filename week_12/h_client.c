@@ -1,25 +1,17 @@
 #include "namedPipe.h"
 
 int main(int argc, char *argv[]){
-		int fdpub, fdpriv,n, fd;
-		char f_name[20];
-		char line[LINESIZE];
+		int fdpub,n;
+		char cmd[20];
 
-		strcpy(f_name, argv[1]);
+		strcpy(cmd, argv[1]);
 
-		mknod(PUBLIC,S_IFIFO|0666, 0);
-
-		fd= open(f_name,O_RDONLY);
-
-		if((fdpub = open(PUBLIC, O_WRONLY)) == -1 ){
-				perror(PUBLIC);
+		if((fdpub = open(SERVER, O_WRONLY)) == -1 ){
+				perror(SERVER);
 				exit(2);
 		}
 
-		while((n = read(fd, line, LINESIZE))>0){
-				write(fdpub,line,n);
-		}
-		close(fd);
+		write(fdpub,cmd,strlen(cmd));
 		close(fdpub);
 		exit(0);
 }

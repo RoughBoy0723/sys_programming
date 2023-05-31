@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -30,7 +31,7 @@ int main(){
         dup(fd[0]);
         close(fd[0]);
         close(fd[1]);
-        execl("/bin/grep","/bin/grep","data"(char *)0);
+        execl("/bin/grep","/bin/grep","data",(char *)0);
         exit(128);
     }
     
