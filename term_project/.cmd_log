@@ -62,3 +62,6 @@ Wed May 24 16:21:04 2023 : ls -r
 Wed May 24 16:21:04 2023 : ls -l
 Wed May 24 16:21:04 2023 : pwd
 Wed May 24 16:21:04 2023 : ls -lf
+Fri May 26 10:56:08 2023 : shell - start
+Fri May 26 10:56:08 2023 : ls
+Fri May 26 10:56:08 2023 : cat shell.h
