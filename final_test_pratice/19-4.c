@@ -7,19 +7,17 @@
 #include <unistd.h>
 #include <pthread.h>
 
-void print(char *text){
-    printf("%s",text);
+void *print(void *arg){
+    printf("This is thread\n");
     sleep(1);
-    exit(1);
+	return(0);
 }
 
 int main(){
     pthread_t t_id;
-    int res;
-    pthread_create(&t_id,NULL,print,"This is thread");
-    pthread_join(&t_id, (int**)res);
-    if(res == 1){
-        printf("OK");
-        exit(0);
-    }
+    int *res;
+    pthread_create(&t_id,NULL,print,NULL);
+    pthread_join(t_id,NULL);
+    printf("OK\n");
+	exit(0);
 }

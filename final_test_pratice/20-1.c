@@ -15,5 +15,5 @@ int main(int argc, char *argv[]){
     lseek(fd,atoi(argv[2]) ,SEEK_SET);
     
     read(fd,buf,atoi(argv[3]));
-    printf("%s",buf);
+    printf("%s\n",buf);
 }
