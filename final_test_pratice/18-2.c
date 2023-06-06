@@ -8,16 +8,18 @@
 #include <string.h>
 #include <sys/wait.h>
 
-int sigint(int sig){
+int count = 0;
+
+void sigint(int sig){
 		printf("interrupt signal\n");
 }
 
-int sigquit(int sig){
+void sigquit(int sig){
 		exit(19);
 }
 
-int alarm(int sig){
-		
+void func(int sig){
+		count++;
 		
 }
 
@@ -26,17 +28,23 @@ int main(){
 		struct itimerval t_val;
 		signal(SIGINT,sigint);
 		signal(SIGQUIT, sigquit);
-		signal(SIGALRM, alarm);
-		t_val.it_interval.tvusec = 2.5L;
-
+		signal(SIGALRM, func);
+		
+		t_val.it_interval.tv_sec = 2L;
+		t_val.it_interval.tv_usec = 5L;
+		t_val.it_value.tv_sec = 0L;
+		t_val.it_value.tv_usec = 0L;
+		
+		setitimer(ITIMER_VIRTUAL, &t_val,NULL);
 		int pid, stat;
 		
 		if((pid=fork())==0){
 				while(1)
 						;
 		}
-
-
+		while(count <= 4)
+				;
+		kill(pid,SIGQUIT);
 		wait(&stat);
 		printf("%d",stat);
 }

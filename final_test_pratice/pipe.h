@@ -7,7 +7,10 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <pthread.h>
+#include <sys/time.h>
 
+#define exam "exam"
 #define SERVER "server"
 #define LINESIZE 512
 #define NUMTRIES 3
